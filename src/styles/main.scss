@@ -1,0 +1,255 @@
+// # Front-end Style Guide
+
+// ## Layout
+
+// The designs were created to the following widths:
+
+// - Mobile: 375px
+// - Desktop: 1440px
+
+
+// ## Colors
+
+// ### Primary
+
+// - Bright Blue: hsl(220, 98%, 61%)
+// - Check Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%)
+
+// ### Neutral
+
+// ### Light Theme
+
+// - Very Light Gray: hsl(0, 0%, 98%)
+// - Very Light Grayish Blue: hsl(236, 33%, 92%)
+// - Light Grayish Blue: hsl(233, 11%, 84%)
+// - Dark Grayish Blue: hsl(236, 9%, 61%)
+// - Very Dark Grayish Blue: hsl(235, 19%, 35%)
+
+// ### Dark Theme
+
+// - Very Dark Blue: hsl(235, 21%, 11%)
+// - Very Dark Desaturated Blue: hsl(235, 24%, 19%)
+// - Light Grayish Blue: hsl(234, 39%, 85%)
+// - Light Grayish Blue (hover): hsl(236, 33%, 92%)
+// - Dark Grayish Blue: hsl(234, 11%, 52%)
+// - Very Dark Grayish Blue: hsl(233, 14%, 35%)
+// - Very Dark Grayish Blue: hsl(237, 14%, 26%)
+
+// ## Typography
+
+$white: #fff;
+$black: #000;
+
+// ### Body Copy
+
+$fs-small: .75rem;
+$fs: 1rem;
+$fs-large: 2.25rem;
+
+// ### Border radius
+
+$br-circle: 50%;
+$br-rounded: 4px;
+
+// ### Font
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+$ff: 'Josefin Sans', sans-serif;
+
+$fw-400 : 400;
+$fw-700 : 700;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $ff;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.wrapper {
+  background-image: url('../assets/bg-desktop-light.jpg');
+  background-size: contain;
+  background-position: top;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 4rem 1.5rem 1.5rem 2rem;
+
+  .main {
+    // background-color: black;
+    max-width: 28rem;
+    width: 100%;
+  }
+
+  // Header
+  .header {
+    &-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }  
+    &-title {
+      text-transform: uppercase;
+      letter-spacing: 10px;
+      font-family: $ff;
+      font-weight: $fw-400;
+      color: white;
+      font-size: $fs-large;
+    }
+    &-btn-moon {
+      cursor: pointer;
+    }
+  }
+
+  // Add new todo section 
+  .add-todo {
+    padding: 1rem;
+    background-color: white;
+    display: flex;
+    column-gap: 1rem;
+    align-items: center;
+    border-radius: $br-rounded;
+    &-btn {
+      background-color: transparent;
+      border-radius: $br-circle;
+      min-width: 20px;
+      height: 20px;
+      outline: none;
+      cursor: pointer;
+      border: 1px solid hsl(233, 11%, 84%);
+      &:hover {
+        border: 1px solid hsl(236, 9%, 61%);
+      }
+    }
+    &-text {
+      width: 100%;
+      outline: none;
+      font-size: 1rem;
+      border: 0;
+      font-family: $ff;
+    }
+  }
+
+  .todo-wrapper {
+    margin-top: 1rem;
+    background-color: white;
+    border-radius: $br-rounded;
+    box-shadow: 0px 10px 30px gray;
+    max-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  // Create a new Todo section
+  .todo {
+    padding: 1rem;
+    background-color: white;
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    border-bottom: 1px solid lightgray;
+    border-top-left-radius: $br-rounded;
+    border-top-right-radius: $br-rounded;
+    &-btn {
+      background-color: transparent;
+      border-radius: $br-circle;
+      min-width: 20px;
+      max-width: 20px;
+      height: 20px;
+      outline: none;
+      cursor: pointer;
+      border: 1px solid hsl(233, 11%, 84%);
+      &:hover {
+        border: 1px solid hsl(236, 9%, 61%);
+      }
+      &-check-icon {
+        display: none;
+        color: $white;
+      }
+    }
+
+    &-title {
+      width: 100%;
+      cursor: pointer;
+      color: hsl(235, 19%, 35%);
+      &:hover + .todo-close {
+        display: block;
+      }
+    }
+    &-close {
+      cursor: pointer;
+      position: absolute;
+      right: 1rem;
+      display: none;
+    }
+  }
+
+  .d-block {
+    display: block;
+  }
+
+  .btn-active {
+    background-color: blue;
+  }
+
+  .todo-done {
+    text-decoration: line-through;
+  }
+
+  // Controls
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    font-family: $ff;
+    font-size: $fs-small;
+    font-weight: $fw-400;
+    color: hsl(236, 9%, 61%);
+    &-list {
+      list-style: none;
+      display: flex;
+      column-gap: 1rem;
+      a {
+        color: hsl(236, 9%, 61%);
+        font-weight: $fw-400;
+        &:hover {
+          color: $black;
+        }
+      }
+      .active {
+        color: hsl(220, 98%, 61%);
+      }
+    }
+    &-clear {
+      color: hsl(236, 9%, 61%);
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+
+  // Footer
+  .footer-title {
+    text-align: center;
+    margin: 2rem auto;
+    color: hsl(236, 9%, 61%);
+    font-size: $fs-small;
+  }
+}
+
+
+ 
