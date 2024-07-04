@@ -1,4 +1,4 @@
-// # Front-end Style Guide
+  // # Front-end Style Guide
 
 // ## Layout
 
@@ -188,12 +188,6 @@ a {
       &:hover + .todo-close {
         display: block;
       }
-    }
-    &-close {
-      cursor: pointer;
-      position: absolute;
-      right: 1rem;
-      display: none;
     }
   }
 

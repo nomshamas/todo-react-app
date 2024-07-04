@@ -15,7 +15,7 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setDisplayText(todoTitle);
-    setTodoTitle({});
+    setTodoTitle("");
   }
 
   return (
@@ -33,14 +33,13 @@ function App() {
           className='add-todo-text' 
           placeholder='Create a new todo..'
           value={todoTitle}
-          onChange={handleChange} />
+          onChange={handleChange}
+          autoFocus />
         </form>
-
-        <p>{displayText}</p>
 
         <div className='todo-wrapper'>
           <div className='todo-list'>
-            <TodoList />
+            <TodoList title={displayText} />
           </div>
           <div className='controls'>
             <p className='controls-info'>5 items left</p>
