@@ -147,11 +147,31 @@ a {
     background-color: white;
     border-radius: $br-rounded;
     box-shadow: 0px 10px 30px gray;
-    max-height: 340px;
+    max-height: 460px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
+
+  .todo-list {
+    height: 100%;
+    overflow: auto;
+  }
+
+  .controls-clear-all {
+    background-color: #ff4c4c; /* Red color */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .controls-clear-all:hover {
+    background-color: #e03a3a;
+  }
+  
 
   // Create a new Todo section
   .todo {
