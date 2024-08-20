@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import MoonIcon from './assets/icon-moon.svg';
 import './styles/main.scss';
 
@@ -51,16 +50,6 @@ function App() {
     localStorage.setItem("mytododata", JSON.stringify(todoList));
   }, [todoList]);
 
-  const onDragEnd = (result) => {
-    if (!result.destination) return;
-
-    const items = Array.from(todoList);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    setTodoList(items);
-  };
-
   return (
     <div className="wrapper">
       <div className='main'>
@@ -75,36 +64,16 @@ function App() {
         </form>
 
         <div className='todo-wrapper'>
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="todos">
-              {(provided) => (
-                <div
-                  className='todo-list'
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  {filteredTodoList.map((td, index) => (
-                    <Draggable key={td.id} draggableId={String(td.id)} index={index}>
-                      {(provided) => (
-                        <div
-                          className='todo'
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <button className={`todo-btn ${td.completed ? 'btn-completed' : 'btn-active'}`} onClick={() => handleToggleComplete(td.id)}>
-                            {td.completed && <span className='todo-btn-check-icon d-block'>✔</span>}
-                          </button>
-                          <p className={`todo-title ${td.completed ? 'todo-completed' : ''}`}> {td.title}</p>
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+          <div className='todo-list'>
+            {filteredTodoList.map((td) => (
+              <div key={td.id} className='todo'>
+                <button className={`todo-btn ${td.completed ? 'btn-completed' : 'btn-active'}`} onClick={() => handleToggleComplete(td.id)}>
+                  {td.completed && <span className='todo-btn-check-icon d-block'>✔</span>}
+                </button>
+                <p className={`todo-title ${td.completed ? 'todo-completed' : ''}`}> {td.title}</p>
+              </div>
+            ))}
+          </div>
 
           <div className='controls'>
             <p className='controls-info'>{todoList.filter(td => !td.completed).length} items left</p>
@@ -118,7 +87,7 @@ function App() {
           </div>
         </div>
 
-        <p className='footer-title'>Drag and drop to reorder list</p>
+        <p className='footer-title'>Manage your tasks efficiently</p>
       </div>
     </div>
   );
